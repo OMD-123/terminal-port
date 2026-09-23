@@ -39,27 +39,29 @@ export function App() {
         if (!response.ok) {
           throw new Error("Profile API unavailable");
         }
-        return response.json() as Promise<Profile>;
+        return response.json() as Promise<Partial<Profile>>;
       })
-      .then((data) =>
-        setProfile({
-          ...fallbackProfile,
-          ...(data ?? {}),
-          skills: {
-            ...fallbackProfile.skills,
-            ...((data as Profile | Record<string, unknown>)?.skills ?? {}),
-          } as Profile["skills"],
-          education: {
-            ...fallbackProfile.education,
-            ...((data as Profile | Record<string, unknown>)?.education ?? {}),
-          },
-          projects: (data as Profile | Record<string, unknown>)?.projects ?? fallbackProfile.projects,
-          certifications: (data as Profile | Record<string, unknown>)?.certifications ?? fallbackProfile.certifications,
-          focus: (data as Profile | Record<string, unknown>)?.focus ?? fallbackProfile.focus,
-          metrics: (data as Profile | Record<string, unknown>)?.metrics ?? fallbackProfile.metrics,
-          keywords: (data as Profile | Record<string, unknown>)?.keywords ?? fallbackProfile.keywords,
-        })
-      )
+      .then((data) => {
+        if (data) {
+          setProfile(prev => ({
+            ...prev,
+            ...data,
+            skills: {
+              ...prev.skills,
+              ...(data.skills ?? {})
+            },
+            education: {
+              ...prev.education,
+              ...(data.education ?? {})
+            },
+            projects: Array.isArray(data.projects) ? data.projects : prev.projects,
+            certifications: Array.isArray(data.certifications) ? data.certifications : prev.certifications,
+            focus: Array.isArray(data.focus) ? data.focus : prev.focus,
+            metrics: Array.isArray(data.metrics) ? data.metrics : prev.metrics,
+            keywords: Array.isArray(data.keywords) ? data.keywords : prev.keywords
+          }));
+        }
+      })
       .catch(() => setProfile(fallbackProfile));
 
     return () => controller.abort();
@@ -124,7 +126,7 @@ export function App() {
     return () => observer.disconnect();
   }, []);
 
-  const githubRoot = (profile.github ?? fallbackProfile.github).replace(/\/$/, "");
+  const githubRoot = (profile.github ?? fallbackProfile.github).replace(/\/+$/, "");
 
   return (
     <>
@@ -348,15 +350,15 @@ function CodeGutter({ rows }: { rows: Tok[][] }) {
           <div className="ts-line" key={idx}>
             <span className="ln">{String(idx + 1).padStart(width, " ")}</span>
             <span className="ts-code" title={tokStr(row)}>
-              {row.map((tk, i) =>
+              {row.map((tk, i) => {
                 tk.c ? (
                   <span key={i} className={tk.c}>
                     {tk.t}
                   </span>
                 ) : (
                   <span key={i}>{tk.t}</span>
-                )
-              )}
+                );
+              })}
             </span>
           </div>
         ))}
@@ -403,23 +405,23 @@ function AboutContent({ profile }: { profile: Profile }) {
     [_TX("  "), _PR("summary"), _TX(":"), _TX(" "), _ST(profile.summary), _TX(",")],
     [_TX("  "), _PR("focus"), _TX(":"), _TX(" "), ..._ARR(profile.focus ?? []), _TX(",")],
     [_TX("  "), _PR("metrics"), _TX(":"), _TX(" "), ..._ARR(profile.metrics ?? []), _TX(",")],
-    [_TX("  "), _PR("keywords"), _TX(":"), _TX(" "), ..._ARR((profile.keywords ?? []).slice(0, 12)), _TX(","), _TX(" "), _CO("// + more")],
+    [_TX("  "), _PR("keywords"), _TX(":"), _TX(" "), ..._ARR((profile.keywords ?? []).slice(0, 12)), _TX(" "), _TX(","), _CO("// + more")],
     [_TX("};")],
     [],
     [_KW("const"), _TX(" "), _ID("techStack"), _TX(":"), _TX(" "), _TY("TechStack"), _TX(" = {")],
-    [_TX("  "), _PR("languages"), _TX(":"), _TX(" "), ..._ARR(profile.skills?.languages ?? []), _TX(",")],
-    [_TX("  "), _PR("backend"), _TX(":"), _TX(" "), ..._ARR(profile.skills?.backend ?? []), _TX(",")],
-    [_TX("  "), _PR("data"), _TX(":"), _TX(" "), ..._ARR(profile.skills?.data ?? []), _TX(",")],
-    [_TX("  "), _PR("realtime"), _TX(":"), _TX(" "), ..._ARR(profile.skills?.realtime ?? []), _TX(",")],
-    [_TX("  "), _PR("infrastructure"), _TX(":"), _TX(" "), ..._ARR(profile.skills?.infrastructure ?? []), _TX(",")],
-    [_TX("  "), _PR("frontend"), _TX(":"), _TX(" "), ..._ARR(profile.skills?.frontend ?? [])],
+    [_TX("  "), _PR("languages"), _TX(":"), _TX(" "), ..._ARR(profile.skills.languages ?? []), _TX(",")],
+    [_TX("  "), _PR("backend"), _TX(":"), _TX(" "), ..._ARR(profile.skills.backend ?? []), _TX(",")],
+    [_TX("  "), _PR("data"), _TX(":"), _TX(" "), ..._ARR(profile.skills.data ?? []), _TX(",")],
+    [_TX("  "), _PR("realtime"), _TX(":"), _TX(" "), ..._ARR(profile.skills.realtime ?? []), _TX(",")],
+    [_TX("  "), _PR("infrastructure"), _TX(":"), _TX(" "), ..._ARR(profile.skills.infrastructure ?? []), _TX(",")],
+    [_TX("  "), _PR("frontend"), _TX(":"), _TX(" "), ..._ARR(profile.skills.frontend ?? [])],
     [_TX("};")],
     [],
     [_KW("const"), _TX(" "), _ID("education"), _TX(" = {")],
-    [_TX("  "), _PR("degree"), _TX(":"), _TX(" "), _ST(profile.education?.degree ?? ""), _TX(",")],
-    [_TX("  "), _PR("school"), _TX(":"), _TX(" "), _ST(profile.education?.school ?? ""), _TX(",")],
-    [_TX("  "), _PR("university"), _TX(":"), _TX(" "), _ST(profile.education?.university ?? ""), _TX(",")],
-    [_TX("  "), _PR("graduation"), _TX(":"), _TX(" "), _ST(profile.education?.graduation ?? "")],
+    [_TX("  "), _PR("degree"), _TX(":"), _TX(" "), _ST(profile.education.degree ?? ""), _TX(",")],
+    [_TX("  "), _PR("school"), _TX(":"), _TX(" "), _ST(profile.education.school ?? ""), _TX(",")],
+    [_TX("  "), _PR("university"), _TX(":"), _TX(" "), _ST(profile.education.university ?? ""), _TX(",")],
+    [_TX("  "), _PR("graduation"), _TX(":"), _TX(" "), _ST(profile.education.graduation ?? "")],
     [_TX("};")],
     [],
     [_KW("export"), _TX(" { "), _ID("developer"), _TX(", "), _ID("techStack"), _TX(", "), _ID("education"), _TX(" };")]
@@ -466,20 +468,20 @@ function ProjectsContent({
             key={project.name}
             style={{ animationDelay: `${index * 40}ms` }}
           >
-            <h3 className="term-project-title">{project.name}</h3>
-            <p className="term-project-tagline">
+            <h3 className="project-title">{project.name}</h3>
+            <p className="project-tagline">
               {project.category} · {project.impact}
             </p>
-            <p className="term-project-desc">{project.description}</p>
-            <div className="term-stack">
+            <p className="project-desc">{project.description}</p>
+            <div className="project-stack">
               {project.stack.map((tech) => (
-                <span key={tech} className="term-chip">
+                <span key={tech} className="project-chip">
                   {tech}
                 </span>
               ))}
             </div>
             <a
-              className="term-link"
+              className="project-link"
               href={url}
               target="_blank"
               rel="noreferrer"
@@ -495,7 +497,7 @@ function ProjectsContent({
               )}
             </a>
             {index < profile.projects.length - 1 && (
-              <hr className="term-rule dim" />
+              <hr className="project-rule dim" />
             )}
           </section>
         );
@@ -509,81 +511,64 @@ function SkillsContent({ profile }: { profile: Profile }) {
     <article className="term-page">
       <header className="term-head">
         <p className="term-kicker">
-          <TerminalSquare size={14} aria-hidden="true" />
+          <FileCode2 size={14} aria-hidden="true" />
           skills.md
         </p>
-        <h2 className="term-h1">Stack</h2>
+        <h2 className="term-h1">Skills</h2>
         <hr className="term-rule" />
       </header>
 
-      <h3 className="term-h2">Comfortable from API design to React delivery.</h3>
-
-      {Object.entries(profile.skills).map(([group, skills]) => (
-        <section className="term-section" key={group}>
-          <h4 className="term-h3">
-            <span className="term-accent-sym">$</span>{" "}
-            {group.charAt(0).toUpperCase() + group.slice(1)}
-          </h4>
-          <div className="term-chip-grid">
-            {skills.map((skill) => (
-              <span key={skill} className="term-chip big">
-                {skill}
-              </span>
+      <section className="skills-grid">
+        <div className="skills-column">
+          <h3 className="skills-title">Languages</h3>
+          <ul className="skills-list">
+            {(profile.skills.languages ?? []).map((lang) => (
+              <li key={lang} className="skills-item">
+                <span className="skills-dot" />{lang}
+              </li>
             ))}
-          </div>
-        </section>
-      ))}
-
-      <section className="term-section">
-        <h4 className="term-h3">
-          <span className="term-accent-sym">$</span> Languages
-        </h4>
-        <div className="term-lang-grid">
-          {profile.languages.map((lang) => (
-            <div key={lang} className="term-lang-card">
-              <span>{lang}</span>
-            </div>
-          ))}
+          </ul>
         </div>
-      </section>
-    </article>
-  );
-}
 
-function CertsContent({ profile }: { profile: Profile }) {
-  return (
-    <article className="term-page">
-      <header className="term-head">
-        <p className="term-kicker">
-          <GraduationCap size={14} aria-hidden="true" />
-          certs.md
-        </p>
-        <h2 className="term-h1">Certifications &amp; Languages</h2>
-        <hr className="term-rule" />
-      </header>
-
-      <section className="term-section">
-        <h3 className="term-h2">Certifications</h3>
-        <ul className="term-list checked">
-          {profile.certifications.map((cert) => (
-            <li key={cert}>
-              <span className="term-check">[✓]</span>
-              {cert}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="term-section">
-        <h3 className="term-h2">Languages</h3>
-        <div className="term-lang-grid">
-          {profile.languages.map((lang) => (
-            <div key={lang} className="term-lang-card">
-              <span>{lang}</span>
-            </div>
-          ))}
+        <div className="skills-column">
+          <h3 className="skills-title">Backend</h3>
+          <ul className="skills-list">
+            {(profile.skills.backend ?? []).map((skill) => (
+              <li key={skill} className="skills-item">
+                <span className="skills-dot" />{skill}
+              </li>
+            ))}
+          </ul>
         </div>
-      </section>
-    </article>
-  );
-}
+
+        <div className="skills-column">
+          <h3 className="skills-title">Data</h3>
+          <ul className="skills-list">
+            {(profile.skills.data ?? []).map((skill) => (
+              <li key={skill} className="skills-item">
+                <span className="skills-dot" />{skill}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="skills-column">
+          <h3 className="skills-title">Realtime</h3>
+          <ul className="skills-list">
+            {(profile.skills.realtime ?? []).map((skill) => (
+              <li key={skill} className="skills-item">
+                <span className="skills-dot" />{skill}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="skills-column">
+          <h3 className="skills-title">Infrastructure</h3>
+          <ul className="skills-list">
+            {(profile.skills.infrastructure ?? []).map((skill) => (
+              <li key={skill} className="skills-item">
+                <span className="skills-dot" />{skill}
+              </li>
+            ))}
+          </ul
