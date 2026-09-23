@@ -1,0 +1,16 @@
+{
+  "name": "om-dandagvhal-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MERN TypeScript portfolio for Om Dandagvhal.",
+  "scripts": {
+    "dev": "concurrently \"pnpm --filter server dev\" \"pnpm --filter client dev\"",
+    "build": "pnpm --filter server build && pnpm --filter client build",
+    "typecheck": "pnpm --filter server typecheck && pnpm --filter client typecheck",
+    "start": "pnpm --filter server start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  },
+  "packageManager": "pnpm@11.25.0"
+}
