@@ -350,15 +350,15 @@ function CodeGutter({ rows }: { rows: Tok[][] }) {
           <div className="ts-line" key={idx}>
             <span className="ln">{String(idx + 1).padStart(width, " ")}</span>
             <span className="ts-code" title={tokStr(row)}>
-              {row.map((tk, i) =>
+              {row.map((tk, i) => {
                 tk.c ? (
                   <span key={i} className={tk.c}>
                     {tk.t}
                   </span>
                 ) : (
                   <span key={i}>{tk.t}</span>
-                )
-              )}
+                );
+              })}
             </span>
           </div>
         ))}
@@ -571,63 +571,4 @@ function SkillsContent({ profile }: { profile: Profile }) {
                 <span className="skills-dot" />{skill}
               </li>
             ))}
-          </ul>
-        </div>
-
-        <div className="skills-column">
-          <h3 className="skills-title">Frontend</h3>
-          <ul className="skills-list">
-            {(profile.skills.frontend ?? []).map((skill) => (
-              <li key={skill} className="skills-item">
-                <span className="skills-dot" />{skill}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="languages-section" aria-label="Language proficiency">
-        <h3 className="skills-title">Languages Spoken</h3>
-        <div className="language-grid">
-          {(profile.languages ?? []).map((lang) => (
-            <div key={lang} className="language-card">
-              <span className="language-name">{lang}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-    </article>
-  );
-}
-
-function CertsContent({ profile }: { profile: Profile }) {
-  return (
-    <article className="term-page">
-      <header className="term-head">
-        <p className="term-kicker">
-          <GraduationCap size={14} aria-hidden="true" />
-          certs.md
-        </p>
-        <h2 className="term-h1">Certifications</h2>
-        <hr className="term-rule" />
-      </header>
-
-      <section className="certs-list">
-        {(profile.certifications ?? []).map((cert, index) => (
-          <div
-            key={cert}
-            className="cert-item"
-            style={{ animationDelay: `${index * 40}ms` }}
-          >
-            <div className="cert-mark">
-              <GraduationCap size={16} aria-hidden="true" />
-            </div>
-            <div className="cert-body">
-              <p className="cert-name">{cert}</p>
-            </div>
-          </div>
-        ))}
-      </section>
-    </article>
-  );
-}
+          </ul
