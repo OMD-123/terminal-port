@@ -1,36 +1,39 @@
 export const portfolioProfile = {
-  name: "Om Dandgavhal",
-  role: "Software Engineer - Backend & Distributed Systems",
+  name: "Om Dandagvhal",
+  role: "Software Engineer · Backend & Platform Systems",
   location: "Nashik, Maharashtra, India",
   email: "omd4485@gmail.com",
-  phone: "+91 9970055620",
+  phone: "+91 99700 55620",
   github: "https://github.com/OMD-123",
   linkedin: "https://www.linkedin.com/in/om-dandgavhal-352412347/",
   npm: "https://www.npmjs.com/package/agent-loop-guard-js",
   headline:
-    "Backend-focused MERN TypeScript engineer building scalable APIs, real-time systems, and distributed-system primitives.",
+    "Backend-focused software engineer building reliable APIs, event-driven services, and distributed-systems foundations.",
   summary:
-    "I build backend-heavy products and system-design projects across TypeScript, Node.js, Express, Fastify, GraphQL, MongoDB, Redis, BullMQ, Socket.IO, Docker, AWS, and React. My work focuses on the primitives behind data-heavy B2B SaaS and AdTech platforms: rate limiting, API gateways, authentication, async job queues, real-time notifications, DB sharding, replication, quorum reads, vector clocks, and conflict resolution.",
+    "B.Tech Information Technology student building backend-focused products and system-design projects with TypeScript and Node.js. I work on API design, Redis-backed reliability patterns, GraphQL gateways, queues, real-time services, and distributed-data trade-offs—with an emphasis on readable, testable implementations.",
   metrics: [
-    "Graduating in 2027",
-    "MERN + TypeScript",
+    "B.Tech IT · expected 2027",
+    "TypeScript + Node.js",
     "Redis + GraphQL",
-    "Published npm package"
+    "Backend systems projects"
   ],
   focus: [
-    "API gateways and backend architecture",
-    "Redis-backed rate limiting, queues, locks, and pub/sub",
-    "MongoDB data modelling and scalable service design",
-    "React dashboards, real-time interfaces, payments, and product UI"
+    "Backend and platform API design",
+    "Redis-backed reliability patterns, rate limits, queues, and pub/sub",
+    "GraphQL gateways, authentication, and service boundaries",
+    "Distributed data: sharding, replication, quorum reads, and conflict resolution"
   ],
   keywords: [
+    "Software Engineer",
+    "Backend Engineer",
+    "Platform Engineering",
     "TypeScript",
     "Node.js",
     "Express",
     "Fastify",
+    "REST APIs",
     "GraphQL",
     "MongoDB",
-    "Mongoose",
     "Redis Lua",
     "BullMQ",
     "Socket.IO",
@@ -38,133 +41,96 @@ export const portfolioProfile = {
     "RBAC",
     "Docker",
     "AWS",
-    "Distributed rate limiting",
-    "API gateways",
+    "Rate limiting",
     "Sharding",
     "Replication",
     "Quorum reads",
     "Vector clocks",
-    "Conflict resolution",
-    "AdTech systems",
-    "B2B SaaS",
-    "React",
-    "Vite",
-    "Recharts",
-    "Razorpay",
-    "Cloudinary"
+    "Conflict resolution"
   ],
   skills: {
-    languages: ["TypeScript", "JavaScript", "Python", "C++", "SQL"],
-    backend: [
-      "Node.js",
-      "Express",
-      "Fastify",
-      "GraphQL",
-      "REST APIs",
-      "JWT",
-      "RBAC"
-    ],
-    data: ["MongoDB", "Mongoose", "Redis Lua", "MySQL", "Vector clocks"],
-    realtime: ["Socket.IO", "WebSocket", "Redis pub/sub", "Event-driven systems"],
-    infrastructure: ["BullMQ", "Docker", "AWS", "GCP basics", "GitHub", "node:test", "Jest"],
-    frontend: ["React", "Vite", "React Router", "Recharts", "Tailwind CSS", "Three Fiber"]
+    "Languages": ["TypeScript", "JavaScript", "Python", "C++", "SQL"],
+    "Backend & APIs": ["Node.js", "Express", "Fastify", "REST APIs", "GraphQL", "Schema stitching", "JWT", "RBAC", "Token rotation"],
+    "Data & distributed systems": ["MongoDB", "Mongoose", "Redis", "Redis Lua", "MySQL", "Sharding", "Replication", "Quorum reads", "Vector clocks"],
+    "Reliability & infrastructure": ["BullMQ", "Retries & dead-letter queues", "Rate limiting", "Socket.IO", "WebSocket", "Docker", "AWS fundamentals", "GCP fundamentals", "Git", "Jest", "node:test"],
+    "Frontend": ["React", "Vite", "React Router", "Recharts", "Tailwind CSS", "Three.js / React Three Fiber"]
   },
   projects: [
     {
-      name: "Multi-Elevator LOOK Scheduling System",
-      category: "MERN + TypeScript",
+      name: "ts-debounce",
+      category: "TypeScript utility package",
       description:
-        "Real-time multi-car elevator simulation with per-car LOOK sweep scheduling, cost-based dispatching, Socket.IO updates, and optional MongoDB run snapshots.",
+        "Lightweight, zero-dependency utilities for debouncing, throttling, and string formatting, with typed options for leading/trailing calls and max wait.",
       impact:
-        "Models distributed worker coordination under changing load, similar to backend orchestration problems in AdTech systems.",
-      stack: ["TypeScript", "React", "Node.js", "Socket.IO", "MongoDB"],
-      url: "https://github.com/OMD-123/elevator-system"
+        "A compact alternative for common timing and formatting needs; the repository documents Node.js, browser, Deno, and Bun support.",
+      stack: ["TypeScript", "Zero dependencies", "Debounce", "Throttle", "Testing"],
+      url: "https://github.com/OMD-123/ts-debounce"
     },
     {
-      name: "DB Sharding & Replication",
-      category: "System design",
+      name: "Distributed Rate Limiter",
+      category: "Backend reliability",
       description:
-        "Reference implementation of consistent-hash plus range sharding and single-leader replication with quorum reads, vector clocks, and conflict resolution.",
+        "Express middleware implementing five rate-limiting strategies, backed by Redis Lua scripts for atomic counter updates.",
       impact:
-        "Makes core distributed-data trade-offs readable through a zero-dependency, test-driven codebase.",
-      stack: ["TypeScript", "Node.js", "node:test", "Distributed systems"],
-      url: "https://github.com/OMD-123/db-sharding-replication"
-    },
-    {
-      name: "Advanced Backend Series",
-      category: "Backend primitives",
-      description:
-        "Daily advanced-backend projects covering Redis Lua rate limiting, JWT auth, GraphQL gateways, notification delivery, BullMQ queues, locks, and URL shortening.",
-      impact:
-        "Shows repeated practice with the backend pieces that support analytics, notifications, auth, and high-volume API traffic.",
-      stack: ["TypeScript", "Express", "Redis", "GraphQL", "BullMQ"],
-      url: "https://github.com/OMD-123"
-    },
-    {
-      name: "agent-loop-guard-js",
-      category: "npm package",
-      description:
-        "Zero-dependency TypeScript package that protects autonomous LLM agents from repeated tool calls, stagnant loops, cyclic execution, and call-budget overruns.",
-      impact:
-        "Published package with provider-independent agent safety logic in a small framework-agnostic library.",
-      stack: ["TypeScript", "npm", "Agent safety"],
-      url: "https://www.npmjs.com/package/agent-loop-guard-js"
-    },
-    {
-      name: "Notification Dedup Backend",
-      category: "Scalable notifications",
-      description:
-        "Email, SMS, and push notification deduplication backend with content-hash exact deduplication and sliding-window rate limiting.",
-      impact:
-        "Solves duplicate-alert problems for campaign, bid, and brand notification flows while staying MERN-ready.",
-      stack: ["TypeScript", "Node.js", "Redis", "Rate limiting", "Adapters"],
-      url: "https://github.com/OMD-123/notification-dedup"
+        "Compares token bucket, sliding-window, fixed-window, leaky-bucket, and concurrency limiting behind a reusable API.",
+      stack: ["TypeScript", "Redis", "Lua", "Express", "Rate limiting"],
+      url: "https://github.com/OMD-123/advance-backend-day1-rate-limiter"
     },
     {
       name: "GraphQL API Gateway",
-      category: "Platform backend",
+      category: "Platform architecture",
       description:
-        "Schema stitching across multiple services with Redis caching, rate limiting, JWT auth, request coalescing, error masking, and query controls.",
+        "Schema-stitching gateway across backend services with Redis caching, rate limiting, JWT authentication, and request coalescing.",
       impact:
-        "Creates one public GraphQL surface over heterogeneous backend services with production-style guardrails.",
+        "Explores how to expose one guarded GraphQL surface over multiple services, including error masking and query controls.",
       stack: ["TypeScript", "GraphQL", "Express", "Redis", "JWT"],
       url: "https://github.com/OMD-123/advance-backend-day3-graphql-gateway"
     },
     {
-      name: "Distributed Job Queue",
-      category: "Async backend",
+      name: "DB Sharding & Replication",
+      category: "Distributed data",
       description:
-        "BullMQ and Redis job queue with priority scheduling, retries, dead-letter queues, and a focused test suite.",
+        "Reference implementation of consistent-hash and range sharding, plus single-leader replication and quorum reads.",
       impact:
-        "Shows production-style async processing patterns for workloads that need reliability and clear failure handling.",
-      stack: ["TypeScript", "BullMQ", "Redis", "Jest", "DLQ"],
+        "Makes eventual-consistency trade-offs concrete through vector clocks, conflict resolution, tests, and a zero-dependency design.",
+      stack: ["TypeScript", "Node.js", "Sharding", "Replication", "node:test"],
+      url: "https://github.com/OMD-123/db-sharding-replication"
+    },
+    {
+      name: "Distributed Job Queue",
+      category: "Asynchronous processing",
+      description:
+        "Redis and BullMQ-based job processing with priorities, retries, dead-letter handling, and automated cleanup policies.",
+      impact:
+        "The project README reports 45 passing tests around queue behavior and failure-handling paths.",
+      stack: ["TypeScript", "BullMQ", "Redis", "Retries", "DLQ"],
       url: "https://github.com/OMD-123/advance-backend-day5-job-queue"
     },
     {
-      name: "StudyNotion LMS",
-      category: "Full-stack product",
+      name: "Multi-Elevator LOOK Scheduler",
+      category: "Real-time systems",
       description:
-        "Learning platform with OTP auth, media uploads, Razorpay payments, ratings, reviews, and complete React plus Node ownership.",
+        "Multi-car elevator simulation with a LOOK scheduling policy per car and a cost-based dispatcher for hall calls.",
       impact:
-        "Demonstrates end-to-end MERN delivery from API design through user-facing product workflows.",
-      stack: ["React", "Node.js", "Express", "MongoDB", "Razorpay"],
-      url: "https://github.com/OMD-123/StudyNotion-LMS"
+        "Separates the TypeScript scheduler for isolated testing and streams live simulation updates with Socket.IO.",
+      stack: ["TypeScript", "Scheduling", "Socket.IO", "MongoDB", "MERN"],
+      url: "https://github.com/OMD-123/elevator-system"
     }
   ],
   education: {
     degree: "B.Tech, Information Technology",
     school: "Sandip Institute of Engineering and Research, Nashik",
     university: "Savitribai Phule Pune University",
-    graduation: "Engineering completion: 2027"
+    graduation: "Expected 2027"
   },
   certifications: [
-    "C++ Programming - NPTEL / Sailor Organization",
-    "Introduction to Modern Database Systems - NPTEL / Sailor Organization",
-    "Python for Data Science - NPTEL / Sailor Organization",
+    "Introduction to Modern Database Systems · NPTEL / Sailor Organization",
+    "Python for Data Science · NPTEL / Sailor Organization",
+    "C++ Programming · NPTEL / Sailor Organization",
     "AWS Cloud Practitioner Simulation",
-    "AI / Prompt Engineering",
     "Goldman Sachs Engineering Job Simulation",
-    "Quantitative Research Job Simulation"
+    "Quantitative Research Job Simulation",
+    "AI / Prompt Engineering"
   ],
-  languages: ["English", "Hindi", "Marathi"]
+  languages: ["English (Fluent)", "Hindi (Native)", "Marathi (Native)"]
 };

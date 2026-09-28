@@ -2,6 +2,12 @@
 
 A modern MERN stack portfolio showcasing Om Dandagvhal's backend-focused projects, skills, and experience. Built with TypeScript, React, Vite, Express, and MongoDB.
 
+## Live links
+
+- **Portfolio:** [portfolioomii.netlify.app](https://portfolioomii.netlify.app/)
+- **New TypeScript package project:** [OMD-123/ts-debounce](https://github.com/OMD-123/ts-debounce)
+- **GitHub profile:** [github.com/OMD-123](https://github.com/OMD-123)
+
 ## 🚀 Features
 
 - **Responsive Design**: Optimized for mobile and desktop viewing
